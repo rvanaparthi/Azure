@@ -1,8 +1,5 @@
-# Azure
-This Repository is to store Azure Arm Templates
+Azure ARM One Click Deployment
+====================
+This is a demo application which shows how to use the Azure Deploy button with a custom Azure Resource Manager template that provisions Azure resources in Azure Account.  To see how this is done, take a look at the azuredeploy.json file at the root of the repository.
 
-<a href="https://azuredeploy.net/
-   repository=https://github.com/rvanaparthi/Azure/blob/master/azure-arm-templates/azuredeploy.json"
-   target="_blank">
-   <img src="http://azuredeploy.net/deploybutton.png"/>
-</a>
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
