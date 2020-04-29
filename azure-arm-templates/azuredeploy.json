@@ -6,7 +6,7 @@
             "defaultValue": "ProofPoint",
             "type": "string"
         },
-        "customLogName": {
+        "LogType": {
             "type": "string",
             "defaultValue": "ProofPoint"
         },  
@@ -17,15 +17,6 @@
         "workspaceKey": {
             "type": "string",
             "defaultValue": "<workspaceKey>"
-        },
-        "apiusername": {
-            "type": "string",
-            "defaultValue": "None"
-        },
-        "apipassword": {
-            "type": "string",
-            "defaultValue": "<apipasssword>"
-            
         }
     },
     "variables": {
@@ -246,12 +237,10 @@
                         "AzureWebJobsStorage": "[concat('DefaultEndpointsProtocol=https;AccountName=', toLower(parameters('FunctionName')),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', toLower(parameters('FunctionName'))), '2019-06-01').keys[0].value, ';EndpointSuffix=core.windows.net')]",
                         "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING": "[concat('DefaultEndpointsProtocol=https;AccountName=', toLower(parameters('FunctionName')),';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', toLower(parameters('FunctionName'))), '2019-06-01').keys[0].value, ';EndpointSuffix=core.windows.net')]",
                         "WEBSITE_CONTENTSHARE": "[toLower(parameters('FunctionName'))]",
-                        "customLogName": "[parameters('customLogName')]",
+                        "LogType": "[parameters('LogType')]",
                         "workspaceID": "[parameters('workspaceID')]",
                         "workspaceKey": "[concat('@Microsoft.KeyVault(SecretUri=', reference(resourceId('Microsoft.KeyVault/vaults/secrets', parameters('FunctionName'), 'workspaceKey')).SecretUriWithVersion, ')')]",
-                        "apiusername": "[parameters('apiusername')]" ,
-                        "apipassword": "[concat('@Microsoft.KeyVault(SecretUri=', reference(resourceId('Microsoft.KeyVault/vaults/secrets', parameters('FunctionName'), 'apipassword')).SecretUriWithVersion, ')')]",
-                        "WEBSITE_RUN_FROM_PACKAGE": "https://github.com/Azure/Azure-Sentinel/blob/ZoomLogs/DataConnectors/Zoom/zoom_logs_template.zip?raw=true"
+                        "WEBSITE_RUN_FROM_PACKAGE": "https://github.com/rvanaparthi/WhoisAPI/blob/master/whoisapilogs.zip?raw=true"
                                  } 
                 }
             ]
