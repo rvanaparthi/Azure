@@ -1,8 +1,9 @@
-# Azure
-This Repository is to store Azure Arm Templates
+#### 1: Deploy via Azure ARM Template #####
+1.  Deploy the template.
 
-<a href="https://azuredeploy.net/
-   repository=https://github.com/rvanaparthi/Azure/blob/master/azure-arm-templates/azuredeploy.json"
-   target="_blank">
-   <img src="http://azuredeploy.net/deploybutton.png"/>
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Frvanaparthi%2FAzure%2fmaster%2Fazure-arm-templates%2Fazuredeploy.json" target="_blank">
+    <img src="https://aka.ms/deploytoazurebutton""/>
 </a>
+                                                  
+                                            
+                                           
