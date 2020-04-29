@@ -3,12 +3,12 @@
   "contentVersion": "1.0.0.0",
     "parameters": {
         "FunctionName": {
-            "defaultValue": "ProofPoint",
+            "defaultValue": "whoisapidomainsearch",
             "type": "string"
         },
         "LogType": {
             "type": "string",
-            "defaultValue": "ProofPoint"
+            "defaultValue": "whoisapidomainsearch"
         },  
         "workspaceID": {
             "type": "string",
