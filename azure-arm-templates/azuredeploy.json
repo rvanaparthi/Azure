@@ -94,21 +94,6 @@
                 }
             }
         },
-         {
-            "type": "Microsoft.KeyVault/vaults/secrets",
-            "apiVersion": "2016-10-01",
-            "name": "[concat(parameters('FunctionName'), '/apipassword')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.KeyVault/vaults', parameters('FunctionName'))]"
-            ],
-            "properties": {
-                "value": "[parameters('workspaceKey')]",
-                "contentType": "string",
-                "attributes": {
-                    "enabled": true
-                }
-            }
-        },
         {
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2019-06-01",
