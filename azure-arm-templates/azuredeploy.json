@@ -3,12 +3,12 @@
   "contentVersion": "1.0.0.0",
     "parameters": {
         "FunctionName": {
-            "defaultValue": "whoisapidomainsearch",
+            "defaultValue": "ProofPoint",
             "type": "string"
         },
         "LogType": {
             "type": "string",
-            "defaultValue": "whoisapidomainsearch"
+            "defaultValue": "ProofPointLogs"
         },  
         "workspaceID": {
             "type": "string",
@@ -17,6 +17,14 @@
         "workspaceKey": {
             "type": "string",
             "defaultValue": "<workspaceKey>"
+        },
+        "apiusername": {
+            "type": "string",
+            "defaultValue": "<apiusername>"
+        },
+        "apipassword": {
+            "type": "string",
+            "defaultValue": "<apipassword>"
         }
     },
     "variables": {
@@ -33,67 +41,7 @@
                 "ApplicationId": "[parameters('FunctionName')]"
             }
         },
-        {
-            "type": "Microsoft.KeyVault/vaults",
-            "apiVersion": "2016-10-01",
-            "name": "[parameters('FunctionName')]",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "sku": {
-                    "family": "A",
-                    "name": "standard"
-                },
-                "tenantId": "[subscription().tenantId]",
-                "enabledForDeployment": false,
-                "enabledForDiskEncryption": false,
-                "enabledForTemplateDeployment": true,
-                "enableSoftDelete": true,
-                "accessPolicies": [
-                            {
-                        "tenantId": "[subscription().tenantId]",
-                        "objectId": "[reference(resourceId('Microsoft.Web/sites', parameters('FunctionName')), '2016-03-01', 'Full').identity.principalId]",
-                        "permissions": {
-                            "keys": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "secrets": [
-                                "Get",
-                                "List",
-                                "Set",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                "certificates": []
-            }
-          }
-        ]
-    }
-        },
-        {
-            "type": "Microsoft.KeyVault/vaults/secrets",
-            "apiVersion": "2016-10-01",
-            "name": "[concat(parameters('FunctionName'), '/workspaceKey')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.KeyVault/vaults', parameters('FunctionName'))]"
-            ],
-            "properties": {
-                "value": "[parameters('workspaceKey')]",
-                "contentType": "string",
-                "attributes": {
-                    "enabled": true
-                }
-            }
-        },
+        
         {
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2019-06-01",
@@ -224,8 +172,8 @@
                         "WEBSITE_CONTENTSHARE": "[toLower(parameters('FunctionName'))]",
                         "LogType": "[parameters('LogType')]",
                         "workspaceID": "[parameters('workspaceID')]",
-                        "workspaceKey": "[concat('@Microsoft.KeyVault(SecretUri=', reference(resourceId('Microsoft.KeyVault/vaults/secrets', parameters('FunctionName'), 'workspaceKey')).SecretUriWithVersion, ')')]",
-                        "WEBSITE_RUN_FROM_PACKAGE": "https://github.com/rvanaparthi/WhoisAPI/blob/master/whoisapilogs.zip?raw=true"
+                        "workspaceKey": "[parameters('workspaceKey')]",
+                        "WEBSITE_RUN_FROM_PACKAGE": "https://github.com/rvanaparthi/WhoisAPI/blob/develop/whoisapilogs.zip?raw=true"
                                  } 
                 }
             ]
