@@ -28,7 +28,7 @@
         },
         "uri": {
             "type": "string",
-            "defaultValue": "uri"
+            "defaultValue": "<Pass Url for ProofPoint>"
         }
 
     },
@@ -181,7 +181,7 @@
                         "apiusername": "[parameters('workspaceID')]",
                         "apipassword": "[parameters('workspaceKey')]",
                         "uri": "[parameters('uri')]",
-                        "WEBSITE_RUN_FROM_PACKAGE": "https://github.com/rvanaparthi/WhoisAPI/blob/develop/whoisapilogs.zip?raw=true"
+                        "WEBSITE_RUN_FROM_PACKAGE": "https://github.com/rvanaparthi/Azure/tree/proofpoint/azure-arm-templates/ProofPoint.zip?raw=true"
                                  } 
                 }
             ]
