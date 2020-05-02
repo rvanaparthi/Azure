@@ -181,7 +181,7 @@
                         "apiusername": "[parameters('workspaceID')]",
                         "apipassword": "[parameters('workspaceKey')]",
                         "uri": "[parameters('uri')]",
-                        "WEBSITE_RUN_FROM_PACKAGE": "https://github.com/rvanaparthi/Azure/tree/proofpoint/azure-arm-templates/ProofPoint.zip?raw=true"
+                        "WEBSITE_RUN_FROM_PACKAGE": "https://github.com/rvanaparthi/Azure/blob/proofpoint/azure-arm-templates/ProofPoint.zip?raw=true"
                                  } 
                 }
             ]
