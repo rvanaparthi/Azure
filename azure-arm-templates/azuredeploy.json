@@ -176,7 +176,7 @@
                         "APIUsername": "[parameters('APIUsername')]",
                         "APIPassword": "[parameters('APIPassword')]",
                         "Uri": "[parameters('Uri')]",
-                        "WEBSITE_RUN_FROM_PACKAGE": "https://github.com/rvanaparthi/Azure/blob/proofpoint/azure-arm-templates/ProofpointTAPDataConnector.zip?raw=true"
+                        "WEBSITE_RUN_FROM_PACKAGE": "https://github.com/rvanaparthi/Azure/blob/master/azure-arm-templates/ProofpointTAPDataConnector.zip?raw=true"
                                  } 
                 }
             ]
