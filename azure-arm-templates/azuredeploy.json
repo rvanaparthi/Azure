@@ -3,12 +3,8 @@
   "contentVersion": "1.0.0.0",
     "parameters": {
         "FunctionName": {
-            "defaultValue": "ProofPoint",
+            "defaultValue": "ProofpointTAPtoSentinel",
             "type": "string"
-        },
-        "customLogName": {
-            "type": "string",
-            "defaultValue": "ProofPoint"
         },  
         "workspaceID": {
             "type": "string",
@@ -20,13 +16,17 @@
         },
         "apiusername": {
             "type": "string",
-            "defaultValue": "None"
+            "defaultValue": "<apiusername>"
         },
         "apipassword": {
             "type": "string",
-            "defaultValue": "<apipasssword>"
-            
+            "defaultValue": "<apipassword>"
+        },
+        "uri": {
+            "type": "string",
+            "defaultValue": "https://tap-api-v2.proofpoint.com/v2/siem/all?format=json&sinceSeconds=300"
         }
+
     },
     "variables": {
     },
@@ -42,82 +42,7 @@
                 "ApplicationId": "[parameters('FunctionName')]"
             }
         },
-        {
-            "type": "Microsoft.KeyVault/vaults",
-            "apiVersion": "2016-10-01",
-            "name": "[parameters('FunctionName')]",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "sku": {
-                    "family": "A",
-                    "name": "standard"
-                },
-                "tenantId": "[subscription().tenantId]",
-                "enabledForDeployment": false,
-                "enabledForDiskEncryption": false,
-                "enabledForTemplateDeployment": true,
-                "enableSoftDelete": true,
-                "accessPolicies": [
-                            {
-                        "tenantId": "[subscription().tenantId]",
-                        "objectId": "[reference(resourceId('Microsoft.Web/sites', parameters('FunctionName')), '2016-03-01', 'Full').identity.principalId]",
-                        "permissions": {
-                            "keys": [
-                                "Get",
-                                "List",
-                                "Update",
-                                "Create",
-                                "Import",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                            "secrets": [
-                                "Get",
-                                "List",
-                                "Set",
-                                "Delete",
-                                "Recover",
-                                "Backup",
-                                "Restore"
-                            ],
-                "certificates": []
-            }
-          }
-        ]
-    }
-        },
-        {
-            "type": "Microsoft.KeyVault/vaults/secrets",
-            "apiVersion": "2016-10-01",
-            "name": "[concat(parameters('FunctionName'), '/workspaceKey')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.KeyVault/vaults', parameters('FunctionName'))]"
-            ],
-            "properties": {
-                "value": "[parameters('workspaceKey')]",
-                "contentType": "string",
-                "attributes": {
-                    "enabled": true
-                }
-            }
-        },
-         {
-            "type": "Microsoft.KeyVault/vaults/secrets",
-            "apiVersion": "2016-10-01",
-            "name": "[concat(parameters('FunctionName'), '/apipassword')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.KeyVault/vaults', parameters('FunctionName'))]"
-            ],
-            "properties": {
-                "value": "[parameters('workspaceKey')]",
-                "contentType": "string",
-                "attributes": {
-                    "enabled": true
-                }
-            }
-        },
+        
         {
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2019-06-01",
@@ -246,12 +171,12 @@
                         "AzureWebJobsStorage": "[concat('DefaultEndpointsProtocol=https;AccountName=', toLower(parameters('FunctionName')),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', toLower(parameters('FunctionName'))), '2019-06-01').keys[0].value, ';EndpointSuffix=core.windows.net')]",
                         "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING": "[concat('DefaultEndpointsProtocol=https;AccountName=', toLower(parameters('FunctionName')),';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', toLower(parameters('FunctionName'))), '2019-06-01').keys[0].value, ';EndpointSuffix=core.windows.net')]",
                         "WEBSITE_CONTENTSHARE": "[toLower(parameters('FunctionName'))]",
-                        "customLogName": "[parameters('customLogName')]",
                         "workspaceID": "[parameters('workspaceID')]",
-                        "workspaceKey": "[concat('@Microsoft.KeyVault(SecretUri=', reference(resourceId('Microsoft.KeyVault/vaults/secrets', parameters('FunctionName'), 'workspaceKey')).SecretUriWithVersion, ')')]",
-                        "apiusername": "[parameters('apiusername')]" ,
-                        "apipassword": "[concat('@Microsoft.KeyVault(SecretUri=', reference(resourceId('Microsoft.KeyVault/vaults/secrets', parameters('FunctionName'), 'apipassword')).SecretUriWithVersion, ')')]",
-                        "WEBSITE_RUN_FROM_PACKAGE": "https://github.com/Azure/Azure-Sentinel/blob/ZoomLogs/DataConnectors/Zoom/zoom_logs_template.zip?raw=true"
+                        "workspaceKey": "[parameters('workspaceKey')]",
+                        "apiusername": "[parameters('workspaceID')]",
+                        "apipassword": "[parameters('workspaceKey')]",
+                        "uri": "[parameters('uri')]",
+                        "WEBSITE_RUN_FROM_PACKAGE": "https://github.com/rvanaparthi/Azure/blob/proofpoint/azure-arm-templates/ProofpointTAPDataConnector.zip?raw=true"
                                  } 
                 }
             ]
