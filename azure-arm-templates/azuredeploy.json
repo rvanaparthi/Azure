@@ -28,7 +28,7 @@
         },
         "uri": {
             "type": "string",
-            "defaultValue": "<Pass Url for ProofPoint>"
+            "defaultValue": "https://tap-api-v2.proofpoint.com/v2/siem/all?format=json&sinceSeconds=300"
         }
 
     },
