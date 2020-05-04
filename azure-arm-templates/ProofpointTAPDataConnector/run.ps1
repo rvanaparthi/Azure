@@ -34,11 +34,11 @@ $ProofPointlogTypes = @(
 
 # Build the headers for the ProofPoint API request
 
-$username = $env:apiUserName
+$username = $env:APIUsername
 
-$password = $env:apiPassword
+$password = $env:APIPassword
 
-$uri = $env:uri
+$uri = $env:Uri
 
 $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $username,$password)))
 
@@ -58,9 +58,9 @@ $response = Invoke-RestMethod $uri -Method 'GET' -Headers $headers
 
 # Define the Log Analytics Workspace ID and Key
 
-$CustomerId = $env:workspaceId
+$CustomerId = $env:WorkspaceId
 
-$SharedKey = $env:workspaceKey
+$SharedKey = $env:WorkspaceKey
 
 $TimeStampField = "DateValue"
 
