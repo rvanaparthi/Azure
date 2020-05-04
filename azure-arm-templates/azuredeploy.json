@@ -5,10 +5,6 @@
         "FunctionName": {
             "defaultValue": "ProofPoint",
             "type": "string"
-        },
-        "LogType": {
-            "type": "string",
-            "defaultValue": "ProofPointLogs"
         },  
         "workspaceID": {
             "type": "string",
@@ -175,7 +171,6 @@
                         "AzureWebJobsStorage": "[concat('DefaultEndpointsProtocol=https;AccountName=', toLower(parameters('FunctionName')),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', toLower(parameters('FunctionName'))), '2019-06-01').keys[0].value, ';EndpointSuffix=core.windows.net')]",
                         "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING": "[concat('DefaultEndpointsProtocol=https;AccountName=', toLower(parameters('FunctionName')),';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', toLower(parameters('FunctionName'))), '2019-06-01').keys[0].value, ';EndpointSuffix=core.windows.net')]",
                         "WEBSITE_CONTENTSHARE": "[toLower(parameters('FunctionName'))]",
-                        "LogType": "[parameters('LogType')]",
                         "workspaceID": "[parameters('workspaceID')]",
                         "workspaceKey": "[parameters('workspaceKey')]",
                         "apiusername": "[parameters('workspaceID')]",
