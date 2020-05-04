@@ -173,8 +173,8 @@
                         "WEBSITE_CONTENTSHARE": "[toLower(parameters('FunctionName'))]",
                         "workspaceID": "[parameters('workspaceID')]",
                         "workspaceKey": "[parameters('workspaceKey')]",
-                        "apiusername": "[parameters('workspaceID')]",
-                        "apipassword": "[parameters('workspaceKey')]",
+                        "apiusername": "[parameters('apiusername')]",
+                        "apipassword": "[parameters('apipassword')]",
                         "uri": "[parameters('uri')]",
                         "WEBSITE_RUN_FROM_PACKAGE": "https://github.com/rvanaparthi/Azure/blob/proofpoint/azure-arm-templates/ProofpointTAPDataConnector.zip?raw=true"
                                  } 
