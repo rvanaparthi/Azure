@@ -6,13 +6,13 @@
             "defaultValue": "ProofpointTAPtoSentinel",
             "type": "string"
         },  
-        "workspaceID": {
+        "WorkspaceID": {
             "type": "string",
-            "defaultValue": "<workspaceID>"
+            "defaultValue": "<WorkspaceID>"
         },
-        "workspaceKey": {
+        "WorkspaceKey": {
             "type": "string",
-            "defaultValue": "<workspaceKey>"
+            "defaultValue": "<WorkspaceKey>"
         },
         "APIUsername": {
             "type": "string",
