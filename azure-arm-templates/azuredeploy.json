@@ -14,15 +14,15 @@
             "type": "string",
             "defaultValue": "<workspaceKey>"
         },
-        "apiusername": {
+        "APIUsername": {
             "type": "string",
-            "defaultValue": "<apiusername>"
+            "defaultValue": "<APIUsername>"
         },
-        "apipassword": {
+        "APIPassword": {
             "type": "string",
-            "defaultValue": "<apipassword>"
+            "defaultValue": "<APIPassword>"
         },
-        "uri": {
+        "Uri": {
             "type": "string",
             "defaultValue": "https://tap-api-v2.proofpoint.com/v2/siem/all?format=json&sinceSeconds=300"
         }
@@ -171,11 +171,11 @@
                         "AzureWebJobsStorage": "[concat('DefaultEndpointsProtocol=https;AccountName=', toLower(parameters('FunctionName')),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', toLower(parameters('FunctionName'))), '2019-06-01').keys[0].value, ';EndpointSuffix=core.windows.net')]",
                         "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING": "[concat('DefaultEndpointsProtocol=https;AccountName=', toLower(parameters('FunctionName')),';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', toLower(parameters('FunctionName'))), '2019-06-01').keys[0].value, ';EndpointSuffix=core.windows.net')]",
                         "WEBSITE_CONTENTSHARE": "[toLower(parameters('FunctionName'))]",
-                        "workspaceID": "[parameters('workspaceID')]",
-                        "workspaceKey": "[parameters('workspaceKey')]",
-                        "apiusername": "[parameters('apiusername')]",
-                        "apipassword": "[parameters('apipassword')]",
-                        "uri": "[parameters('uri')]",
+                        "WorkspaceID": "[parameters('WorkspaceID')]",
+                        "WorkspaceKey": "[parameters('WorkspaceKey')]",
+                        "APIUsername": "[parameters('APIUsername')]",
+                        "APIPassword": "[parameters('APIPassword')]",
+                        "Uri": "[parameters('Uri')]",
                         "WEBSITE_RUN_FROM_PACKAGE": "https://github.com/rvanaparthi/Azure/blob/proofpoint/azure-arm-templates/ProofpointTAPDataConnector.zip?raw=true"
                                  } 
                 }
