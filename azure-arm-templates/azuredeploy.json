@@ -176,7 +176,7 @@
                           "apiUsername": "[parameters('APIUsername')]",
                           "apiPassword": "[parameters('APIPassword')]",
                           "uri": "[parameters('Uri')]",
-                          "WEBSITE_RUN_FROM_PACKAGE": "https://github.com/Azure/Azure-Sentinel/tree/master/DataConnectors/ProofpointTAP/proofpoint_tap_template.zip?raw=true"
+                          "WEBSITE_RUN_FROM_PACKAGE": "https://github.com/rvanaparthi/Azure/blob/master/azure-arm-templates/proofpoint_tap_template.zip?raw=true"
                                    } 
                   }
               ]
