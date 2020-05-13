@@ -1,3 +1,17 @@
+<#  
+    Version:        1.0
+    Author(s):      Chi Duong
+    Last Modified:  5/12/2020
+    Comment:        Inital Release
+
+    DESCRIPTION
+    This Function App calls the Proofpoint Targeted Attack Protection (TAP) API (https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API) to pull the Proofpoint
+    Message Blocked, Message Delivered, Clicks Blocked, and Clicks Permitted logs. The response from the Proofpoint API is recieved in JSON format. This function will build the signature and authorization header 
+    needed to post the data to the Log Analytics workspace via the HTTP Data Connector API. The Function App will post each log type to their individual tables in Log Analytics, for example,
+    ProofPointMessageBlocked_CL, ProofPointMessageDelivered_CL, ProofPointClicksPermitted_CL, ProofPointClicksBlocked_CL.
+#>
+
+
 # Input bindings are passed in via param block.
 param($Timer)
 # Get the current universal time in the default string format
@@ -91,7 +105,7 @@ ForEach ($PPLogType in $ProofpointLogTypes) {
         if($response.$PPLogType -eq $null) {                            # if the log entry is a null, this occurs on the last line of each LogType. Should only be one per log type
             Write-Host ("ProofPointTAP$($PPLogType) null line excluded")    # exclude it from being posted
         } else {            
-            $json = $response.$PPLogType | ConvertTo-Json -Compress -Depth 3                # convert each log entry and post each entry to the Log Analytics API
+            $json = $response.$PPLogType | ConvertTo-Json -Depth 3                # convert each log entry and post each entry to the Log Analytics API
             Post-LogAnalyticsData -customerId $customerId -sharedKey $sharedKey -body ([System.Text.Encoding]::UTF8.GetBytes($json)) -logType "ProofPointTAP$($PPLogType)"
             }
         }
